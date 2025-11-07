@@ -1,5 +1,5 @@
 "use client";
-import { Box, Text, Button, Flex, Image, Link } from "@chakra-ui/react";
+import { Box, Text, Button, Flex, Image, Link, VStack, HStack, Textarea, Input  } from "@chakra-ui/react";
 import PageTransition from "@/components/ui/PageTransition";
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,10 +20,29 @@ export default function Home() {
     "/Slideshow/Slide4.jpg",
     "/Slideshow/Slide5.jpg",
   ];
+
+  const texts = [
+    {
+      date: "3 FEBRUARY 2023",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sollicitudin malesuada sapien, sit amet sodales ex sagittis quis. Suspendisse facilisis mi volutpat urna pulvinar, quis aliquet dui lobortis. Sed egestas consequat risus, eu mollis est tincidunt accumsan."
+    },
+    {
+      date: "9 APRIL 2018",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sollicitudin malesuada sapien, sit amet sodales ex sagittis quis. Suspendisse facilisis mi volutpat urna pulvinar, quis aliquet dui lobortis. Sed egestas consequat risus, eu mollis est tincidunt accumsan."
+    }
+  ];
   const [currentImage, setCurrentImage] = useState(0);
   const [opened, setOpened] = useState(false);
   const openingRef = useRef(null);
   const audioRef = useRef(null);
+  const [index, setIndex] = useState(0);
+  const nextText = () => {
+    setIndex((index + 1) % texts.length);
+  };
+
+  const prevText = () => {
+    setIndex((index - 1 + texts.length) % texts.length);
+  };
 
   useEffect(() => {
     if (!opened) return;
@@ -408,13 +427,15 @@ export default function Home() {
                     h="280px"
                     bgImage="linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('/Footer.webp')"
                     bgSize="cover"
-                    bgPosition="50% 35%"
                     display="flex"
                     flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
                     textAlign="center"
                     p="40px"
+                    style={{ 
+                       backgroundPosition: "center, 50% 35%",
+                     }}
                   >
                     <Text fontSize="2xl" color="white" mb={4}>
                       Wedding Gift
@@ -431,7 +452,7 @@ export default function Home() {
                   <Box
                     w="100%"
                     h="280px"
-                    bgImage="linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('/Footer.webp')"
+                    bgImage="linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('/Footer2.webp')"
                     color="black"
                     alignItems="center"
                     textAlign="center"
@@ -441,6 +462,9 @@ export default function Home() {
                     flexDirection="column"
                     justifyContent="center"
                     p="40px"
+                    style={{ 
+                       backgroundPosition: "center, 50% 40%",
+                     }}
                   >
                     <Text fontSize="2xl" color="white" mb={4}>
                       Live Streaming
@@ -455,6 +479,119 @@ export default function Home() {
                     >
                       Open Via Youtube
                     </Button>
+                  </Box>
+                  <Box
+                    w="100%"
+                    color="black"
+                    alignItems="center"
+                    textAlign="center"
+                    display="flex"
+                    bgSize="cover"
+                    flexDirection="column"
+                    justifyContent="center"
+                    p="40px"               
+                  >
+                    <Text fontSize="3xl" mb={4}>
+                      Tiffany & Jared are
+                      <br />
+                      Getting Married!
+                    </Text>        
+                    <Image
+                      src="/Slideshow/Slide1.jpg"
+                      w="200px"
+                      objectFit="cover"
+                      alt="gambar pengantin"
+                      mb={4}
+                    />
+                    <Text fontSize="xl" mb={4} fontWeight="bold" textDecorationLine="underline" as="a" href="https://www.youtube.com/watch?v=WEC5RezD5jU&feature=youtu.be">
+                      WATCH OUR VIDEO
+                    </Text>
+                    <VStack spacing={2} maxW="800px" mt={6}>
+                      <Text fontWeight="bold" fontSize="lg">{texts[index].date}</Text>
+                      <Text maxW="600px" fontSize="md">{texts[index].desc}</Text>
+                    </VStack>
+                    <HStack spacing={4} mt={4} color="black">
+                      <Button onClick={prevText} variant="outline" color="black">←</Button>
+                      <Button onClick={nextText} variant="outline" color="black">→</Button>
+                    </HStack>
+                  </Box>
+                  <Box 
+                    w="100%"
+                    bg="rgba(249, 247, 244, 1)"
+                    color="black"
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    textAlign="center"
+                    p="80px 40px"         
+                  >
+                    <Text fontSize="3xl">
+                      Prayers & Wishes           
+                    </Text> 
+                    <Text fontSize="xl" mb={4}>
+                      Please leave your sincere prayers and wishes to us and our family:
+                    </Text>
+                    <Input
+                      placeholder="Name"
+                      size="lg"
+                      mb={4}
+                    />
+                    <Input
+                      placeholder="The Relationship"
+                      size="lg"
+                      mb={4}
+                    />
+                    <Textarea
+                      placeholder="Prayers & Wishes"
+                      size="lg"
+                      resize="vertical"
+                      minH="100px"
+                      maxW="600px"
+                    />
+                    <Box w="100%" display="flex" justifyContent="flex-end">
+                      <Button
+                        mt={4}
+                        variant="outline"
+                        bg="#ecdbc0ff"
+                        color="white"
+                        fontStyle="italic"
+                      >
+                        Submit
+                      </Button>
+                    </Box>
+                  </Box>
+                  <Box
+                    w="100%"
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    textAlign="center"
+                    p="40px"
+                  >
+                    <Text fontSize="md" >
+                      It will be a joy for us if you are still willing to give your blessing from afar. Thank you for all the words, prayers, and attention given.
+                    </Text>
+                  </Box>
+                  <Box
+                    w="100%"
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    textAlign="center"
+                    p="40px"
+                  >
+                    <Text fontSize="xl" fontWeight="bold">
+                      OUR SINCERE
+                    </Text>
+                    <Text fontSize="4xl">
+                      Tiffany & Jared
+                    </Text>
+                    <Text fontSize="2xl" fontStyle="italic">
+                      #TImetoshaRE
+                    </Text>
                   </Box>
                 </Box>
               </motion.div>
