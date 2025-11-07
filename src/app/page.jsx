@@ -9,6 +9,10 @@ import "swiper/css/effect-cards";
 import { EffectCards } from "swiper/modules";
 
 export default function Home() {
+  const slideUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
+  };
   const images = [
     "/Slideshow/Slide1.jpg",
     "/Slideshow/Slide2.jpg",
@@ -67,7 +71,7 @@ export default function Home() {
           </Text>
         </Box>
 
-        <Box flex="1" height="100vh" overflowY="auto" position="relative">
+        <Box flex="1" height="100vh" overflowY="auto" position="relative" overflowX="hidden">
           <AnimatePresence mode="wait">
             {!opened && (
               <motion.div
@@ -221,30 +225,38 @@ export default function Home() {
                   flexDirection="column"
                   textAlign="center"
                 >
-                  <Text fontSize="md" fontWeight="bold" mb="30px" mt="30px">
-                    DEAR MR-MRS-MS,
-                    <br /> FAMILY AND FRIENDS
-                  </Text>
-                  <Text fontSize="4xl" fontWeight="bold" mb="4px">
-                    Welcome to Tiffany & Jared’s Wedding Website
-                  </Text>
-                  <Text
-                    fontSize="lg"
-                    maxW="600px"
-                    lineHeight="1.8"
-                    fontStyle="italic"
-                    paddingLeft="20px"
-                    paddingRight="20px"
-                  >
-                    Together with joyful hearts and the grace of God, we
-                    joyfully announce the upcoming of our marriage.
-                  </Text>
+                  <motion.div variants={slideUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
+                    <Text fontSize="md" fontWeight="bold" mb="30px" mt="30px">
+                      DEAR MR-MRS-MS,
+                      <br /> FAMILY AND FRIENDS
+                    </Text>
+                  </motion.div>
+                  <motion.div variants={slideUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
+                    <Text fontSize="4xl" fontWeight="bold" mb="4px">
+                      Welcome to Tiffany & Jared’s Wedding Website
+                    </Text>
+                  </motion.div>
+                  
+                  <motion.div variants={slideUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
+                    <Text
+                      fontSize="lg"
+                      maxW="600px"
+                      lineHeight="1.8"
+                      fontStyle="italic"
+                      paddingLeft="20px"
+                      paddingRight="20px"
+                    >
+                      Together with joyful hearts and the grace of God, we
+                      joyfully announce the upcoming of our marriage.
+                    </Text>
+                  </motion.div>
+                  
                   <Swiper
                     effect={"cards"}
                     grabCursor={true}
                     modules={[EffectCards]}
                     style={{
-                      width: "250px", // ukuran kartu image
+                      width: "250px", 
                       height: "330px",
                       marginTop: "40px",
                     }}
@@ -271,12 +283,13 @@ export default function Home() {
                     alignItems="center"
                     textAlign="center"
                     p="80px 40px"
-                    mt="40px"
                   >
-                    <Text fontSize="xl" fontWeight="bold" mb={4}>
-                      MEET THE BRIDE & GROOM
-                    </Text>
-
+                    <motion.div variants={slideUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
+                      <Text fontSize="xl" fontWeight="bold" mb={4}>
+                        MEET THE BRIDE & GROOM
+                      </Text>
+                    </motion.div>
+                  
                     <Flex gap={8} flexWrap="wrap" justifyContent="center">
                       <Box textAlign="center">
                         <Image
