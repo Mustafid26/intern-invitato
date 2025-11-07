@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <PageTransition>
-      <audio ref={audioRef} src="/music.mp3" loop />
+      <audio ref={audioRef} src="/backgroundmusic.mp3" loop />
       <Flex w="100vw" h="100vh" overflow="hidden">
         <Box
           flex="2"
